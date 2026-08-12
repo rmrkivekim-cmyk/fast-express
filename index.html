@@ -59,11 +59,11 @@
             <div class="container">
                 <h2>Contact Us</h2>
                 <p>Have questions? Get in touch with us today!</p>
-                <form class="contact-form">
+                <form class="contact-form" action="https://formspree.io/f/xvkprppd" method="POST">
                     <label for="email" class="sr-only">Your email</label>
-                    <input id="email" type="email" placeholder="Your email" autocomplete="email" required>
+                    <input id="email" name="email" type="email" placeholder="Your email" autocomplete="email" required>
                     <label for="message" class="sr-only">Your message</label>
-                    <textarea id="message" placeholder="Your message" rows="5" required></textarea>
+                    <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
