@@ -5,16 +5,17 @@ const navLinks = document.getElementById('navLinks');
 if (menuToggle) {
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
     });
 
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
         });
     });
 }
 
-// Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -23,7 +24,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Animate counter numbers
 function animateCounter(element, target, duration = 2000) {
     let current = 0;
     const increment = target / (duration / 16);
@@ -32,14 +32,11 @@ function animateCounter(element, target, duration = 2000) {
         if (current < target) {
             element.textContent = Math.floor(current);
             requestAnimationFrame(updateCount);
-        } else {
-            element.textContent = target;
-        }
+        } else element.textContent = target;
     };
     updateCount();
 }
 
-// Intersection Observer for scroll animations
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -55,7 +52,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.card, section').forEach(element => observer.observe(element));
 
-// Contact Form Handling
+// Contact Form
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -75,9 +72,7 @@ if (contactForm) {
             return;
         }
 
-        // Open the visitor's email app with the message addressed to Fast Express.
-        // Replace the address below with the real Fast Express email before launch.
-        const recipient = 'YOUR-EMAIL@example.com';
+        const recipient = 'rm.rkive.kim@gmail.com';
         const subject = encodeURIComponent('Fast Express website inquiry');
         const body = encodeURIComponent(`Email: ${email}\n\nMessage:\n${message}`);
         window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
@@ -96,7 +91,6 @@ function showMessage(text, type) {
     formMessage.className = `form-message ${type}`;
 }
 
-// Header shadow on scroll
 window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     document.querySelector('header').style.boxShadow = scrollTop > 100
@@ -104,10 +98,10 @@ window.addEventListener('scroll', () => {
         : '0 2px 5px rgba(0,0,0,0.1)';
 });
 
-// Keyboard navigation for accessibility
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navLinks && navLinks.classList.contains('active')) {
         navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
     }
 });
 
