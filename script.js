@@ -52,12 +52,13 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.card, section').forEach(element => observer.observe(element));
 
-// Contact Form
+// Formspree handles contact-form delivery. No mail app is required.
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-
+        const button = contactForm.querySelector('button[type="submit"]');
+        const formData = new FormData(contactForm);
         const email = contactForm.querySelector('input[type="email"]').value.trim();
         const message = contactForm.querySelector('textarea').value.trim();
 
@@ -66,17 +67,28 @@ if (contactForm) {
             return;
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            showMessage('Please enter a valid email address.', 'error');
-            return;
-        }
+        button.disabled = true;
+        button.textContent = 'Sending...';
 
-        const recipient = 'rm.rkive.kim@gmail.com';
-        const subject = encodeURIComponent('Fast Express website inquiry');
-        const body = encodeURIComponent(`Email: ${email}\n\nMessage:\n${message}`);
-        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-        showMessage('Your email app is opening so you can send your message.', 'success');
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                contactForm.reset();
+                showMessage('Thanks! Your message has been sent.', 'success');
+            } else {
+                showMessage('Sorry, your message could not be sent. Please try again.', 'error');
+            }
+        } catch (error) {
+            showMessage('Sorry, there was a connection problem. Please try again.', 'error');
+        } finally {
+            button.disabled = false;
+            button.textContent = 'Send Message';
+        }
     });
 }
 
