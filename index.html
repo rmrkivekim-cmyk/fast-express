@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - Fast Express</title>
+    <meta name="description" content="Fast Express — fast, modern web solutions.">
+    <title>Fast Express</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,7 +12,7 @@
         <nav class="navbar">
             <div class="container">
                 <h1 class="logo">Fast Express</h1>
-                <button class="menu-toggle" id="menuToggle">☰</button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">☰</button>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -36,18 +37,9 @@
                 <h2>About Us</h2>
                 <p>Fast Express is a modern platform designed to help you build and launch websites quickly and efficiently.</p>
                 <div class="stats">
-                    <div class="stat-item">
-                        <h3>500</h3>
-                        <p>Projects Completed</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>1000</h3>
-                        <p>Happy Clients</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>5</h3>
-                        <p>Years Experience</p>
-                    </div>
+                    <div class="stat-item"><h3>500</h3><p>Projects Completed</p></div>
+                    <div class="stat-item"><h3>1000</h3><p>Happy Clients</p></div>
+                    <div class="stat-item"><h3>5</h3><p>Years Experience</p></div>
                 </div>
             </div>
         </section>
@@ -56,18 +48,9 @@
             <div class="container">
                 <h2>Services</h2>
                 <div class="service-cards">
-                    <div class="card">
-                        <h3>Web Design</h3>
-                        <p>Beautiful and responsive designs for your website.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Fast Performance</h3>
-                        <p>Optimized for speed and efficiency.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Support</h3>
-                        <p>24/7 support to help you succeed.</p>
-                    </div>
+                    <div class="card"><h3>Web Design</h3><p>Beautiful and responsive designs for your website.</p></div>
+                    <div class="card"><h3>Fast Performance</h3><p>Optimized for speed and efficiency.</p></div>
+                    <div class="card"><h3>Support</h3><p>24/7 support to help you succeed.</p></div>
                 </div>
             </div>
         </section>
@@ -77,8 +60,10 @@
                 <h2>Contact Us</h2>
                 <p>Have questions? Get in touch with us today!</p>
                 <form class="contact-form">
-                    <input type="email" placeholder="Your email" required>
-                    <textarea placeholder="Your message" rows="5" required></textarea>
+                    <label for="email" class="sr-only">Your email</label>
+                    <input id="email" type="email" placeholder="Your email" autocomplete="email" required>
+                    <label for="message" class="sr-only">Your message</label>
+                    <textarea id="message" placeholder="Your message" rows="5" required></textarea>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
@@ -87,7 +72,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Fast Express. All rights reserved.</p>
+            <p>&copy; 2026 Fast Express. All rights reserved.</p>
         </div>
     </footer>
 
